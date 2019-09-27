@@ -26,11 +26,13 @@ function removeCheckedItems() {
     elmntBr.remove();
     brCounter -= 1;
 
-    var elmntChckBx = document.getElementsByTagName("INPUT")[inputCounter - 1];
+    var elmntChckBx = document.getElementsByTagName("INPUT")[inputCounter + 1];
     var elmntTxtBx = document.getElementsByTagName("INPUT")[inputCounter];
     elmntChckBx.remove();
     elmntTxtBx.remove();
     inputCounter -= 2;
+
+    index -= 1;
 }
 
 function removeAllItems() {
@@ -40,11 +42,14 @@ function removeAllItems() {
         brCounter -= 1;
     }
 
-    while (inputCounter > 0) {
-        var elmntChckBx = document.getElementsByTagName("INPUT")[inputCounter - 1];
+    while (inputCounter >= 0) {
+        var elmntChckBx = document.getElementsByTagName("INPUT")[inputCounter + 1];
         var elmntTxtBx = document.getElementsByTagName("INPUT")[inputCounter];
         elmntChckBx.remove();
         elmntTxtBx.remove();
         inputCounter -= 2;
     }
+
+    index = 0;
+    addItem();
 }
