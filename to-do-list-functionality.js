@@ -52,18 +52,19 @@ function removeCheckedItems() {
     }
     removeAllItems();
     textValues.reverse();
-    alert(brCounter);
-    alert(inputCounter);
-    // for (var i = 0; i < itemCount; i++) {
-    //     alert(i);
-    //     alert(textValues[i]);
-    // }
+    // alert(brCounter);
+    // alert(inputCounter);
+    for (var i = 0; i < itemCount; i++) {
+        alert(i);
+        alert(textValues[i]);
+    }
     // alert(itemCount);
 }
 
 // change this function to use element ids instead of tag names
+// solution on the line above this one does not work
 function removeAllItems() {
-    while (brCounter > 0) {
+    while (brCounter >= 0) {
         var elmntBr = document.getElementsByTagName("BR")[brCounter];
         elmntBr.remove();
         brCounter -= 1;
