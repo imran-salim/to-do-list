@@ -10,7 +10,6 @@ function addListItem() {
     index += 1;
     inputCounter += 2;
     brCounter += 1;
-    // console.log(brCounter);
 }
 
 function removeCheckedListItems() {
@@ -28,21 +27,15 @@ function removeAllListItems() {
     }
 
     while (inputCounter >= 0) {
-        var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter + 1];
-        var elmntTxtbx = document.getElementsByTagName("INPUT")[inputCounter];
+        var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
+        var elmntTxtbx = document.getElementsByTagName("INPUT")[inputCounter + 1];
         elmntChckbx.remove();
         elmntTxtbx.remove();
         inputCounter -= 2;
     }
 
     index = 0;
-    // console.log("List is empty");
-    // console.log("Input counter: " + inputCounter);
-    // console.log("Line break counter: " + brCounter);
     addListItem();
-    // console.log("Initial list item has been added");
-    // console.log("Input counter: " + inputCounter);
-    // console.log("Line break counter: " + brCounter);
 }
 
 function addChckbox() {
@@ -62,22 +55,21 @@ function addTxtbox() {
 }
 
 function addLinebr() {
-    var br = document.createElement("BR")
+    var br = document.createElement("BR");
     document.body.appendChild(br);
 }
 
 function collectListItemsContents() {
     var listItemsContents = [];
+    var originalInputCounter = inputCounter;
     
     while (inputCounter >= 0) {
-        var elmntTxtbx = document.getElementsByTagName("INPUT")[inputCounter]
-        // console.log(inputCounter);
-        var txtboxValue = elmntTxtbx.value;
-        console.log(txtboxValue);
-        // listItemsContents.push(txtboxValue);
+        var elmntTxtbx = document.getElementsByTagName("INPUT")[inputCounter + 1];
+        listItemsContents.push(elmntTxtbx.value);
         inputCounter -= 2;
     }
 
-    // listItemsContents.reverse();
+    inputCounter = originalInputCounter;    
+    listItemsContents.reverse();
     return listItemsContents;
 }
