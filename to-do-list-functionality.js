@@ -5,8 +5,7 @@ var index = 1;
 function addListItem() {
     addChckbox();
     addTxtbox();
-    addLinebr();
-
+    addLineBr();
     index += 1;
     inputCounter += 2;
     brCounter += 1;
@@ -14,9 +13,11 @@ function addListItem() {
 
 function removeCheckedListItems() {
     var listContents = collectListItemsContents();
-    // for (var i = 0; i < listContents.length; i++) {
-    //     console.log(listContents[i]);
-    // }
+    removeAllListItems();
+    for (var i = 0; i  < listContents.length-1; i++) {
+        addListItem();
+    }
+    // repopulateListItems(listContents);
 }
 
 function removeAllListItems() {
@@ -41,20 +42,20 @@ function removeAllListItems() {
 function addChckbox() {
     var chckbx = document.createElement("INPUT");
     chckbx.setAttribute("type", "checkbox");
-    chckbx.setAttribute("class", "item"+index)
-    chckbx.setAttribute("id", "checkbox"+index)
+    chckbx.setAttribute("class", "item" + index);
+    chckbx.setAttribute("id", "checkbox" + index);
     document.body.appendChild(chckbx);
 }
 
 function addTxtbox() {
     var txtbx = document.createElement("INPUT");
     txtbx.setAttribute("type", "text");
-    txtbx.setAttribute("class", "item"+index)
-    txtbx.setAttribute("id", "textbox"+index);
+    txtbx.setAttribute("class", "item" + index)
+    txtbx.setAttribute("id", "textbox" + index);
     document.body.appendChild(txtbx);
 }
 
-function addLinebr() {
+function addLineBr() {
     var br = document.createElement("BR");
     document.body.appendChild(br);
 }
@@ -72,4 +73,8 @@ function collectListItemsContents() {
     inputCounter = originalInputCounter;    
     listItemsContents.reverse();
     return listItemsContents;
+}
+
+function repopulateListItems(contents) {
+
 }
