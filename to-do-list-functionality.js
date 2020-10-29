@@ -1,6 +1,8 @@
 var inputCounter = 0;
 var brCounter = 0;
 var index = 1;
+var inputs = document.getElementsByTagName("INPUT");
+var linebreaks = document.getElementsByTagName("BR");
 
 function addListItem() {
     addChckbox();
@@ -9,10 +11,13 @@ function addListItem() {
     index += 1;
     inputCounter += 2;
     brCounter += 1;
+    // console.log("current index: " + index);
+    // console.log("current input counter: " + inputCounter);
+    // console.log("current br counter: " + brCounter);
 }
 
 function removeCheckedListItems() {
-    var listContents = collectListItemsContents();
+    var listContents = collectUncheckedListItemsContents();
     removeAllListItems();
     for (var i = 0; i  < listContents.length-1; i++) {
         addListItem();
@@ -22,14 +27,14 @@ function removeCheckedListItems() {
 
 function removeAllListItems() {
     while (brCounter >= 0) {
-        var elmntBr = document.getElementsByTagName("BR")[brCounter];
+        var elmntBr = linebreaks[brCounter];
         elmntBr.remove();
         brCounter -= 1;
     }
 
     while (inputCounter >= 0) {
-        var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
-        var elmntTxtbx = document.getElementsByTagName("INPUT")[inputCounter + 1];
+        var elmntChckbx = inputs[inputCounter];
+        var elmntTxtbx = inputs[inputCounter + 1];
         elmntChckbx.remove();
         elmntTxtbx.remove();
         inputCounter -= 2;
@@ -60,18 +65,26 @@ function addLineBr() {
     document.body.appendChild(br);
 }
 
-function collectListItemsContents() {
+function collectUncheckedListItemsContents() {
     var listItemsContents = [];
     var originalInputCounter = inputCounter;
+    // console.log("initial number of inputs " + inputCounter);
     
     while (inputCounter >= 0) {
-        var elmntTxtbx = document.getElementsByTagName("INPUT")[inputCounter + 1];
-        listItemsContents.push(elmntTxtbx.value);
+        // var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
+        // if (elmntChckbx.checked == false) {
+            var elmntTxtbx = inputs[inputCounter + 1];
+            listItemsContents.push(elmntTxtbx.value);
+        // }       
         inputCounter -= 2;
     }
 
     inputCounter = originalInputCounter;    
     listItemsContents.reverse();
+    for (var i = 0; i < listItemsContents.length; i++) {
+        console.log(index + " " + listItemsContents[i]);
+    }
+    // console.log("new number of inputs: " + inputCounter);
     return listItemsContents;
 }
 
