@@ -68,14 +68,14 @@ function addLineBr() {
 function collectUncheckedListItemsContents() {
     var listItemsContents = [];
     var originalInputCounter = inputCounter;
-    // console.log("initial number of inputs " + inputCounter);
+    console.log("initial number of inputs " + inputCounter);
     
     while (inputCounter >= 0) {
-        // var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
-        // if (elmntChckbx.checked == false) {
+        var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
+        if (elmntChckbx.checked == false) {
             var elmntTxtbx = inputs[inputCounter + 1];
             listItemsContents.push(elmntTxtbx.value);
-        // }       
+        }       
         inputCounter -= 2;
     }
 
@@ -84,7 +84,7 @@ function collectUncheckedListItemsContents() {
     for (var i = 0; i < listItemsContents.length; i++) {
         console.log(index + " " + listItemsContents[i]);
     }
-    // console.log("new number of inputs: " + inputCounter);
+    console.log("new number of inputs: " + inputCounter);
     return listItemsContents;
 }
 
