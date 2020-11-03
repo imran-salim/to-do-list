@@ -11,9 +11,7 @@ function addListItem() {
     index += 1;
     inputCounter += 2;
     brCounter += 1;
-    // console.log("current index: " + index);
-    // console.log("current input counter: " + inputCounter);
-    // console.log("current br counter: " + brCounter);
+    printInputState("add");
 }
 
 function removeCheckedListItems() {
@@ -41,6 +39,7 @@ function removeAllListItems() {
     }
 
     index = 0;
+    printInputState("remove");
     addListItem();
 }
 
@@ -68,7 +67,7 @@ function addLineBr() {
 function collectUncheckedListItemsContents() {
     var listItemsContents = [];
     var originalInputCounter = inputCounter;
-    console.log("initial number of inputs " + inputCounter);
+    printInputState();
     
     while (inputCounter >= 0) {
         var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
@@ -78,16 +77,43 @@ function collectUncheckedListItemsContents() {
         }       
         inputCounter -= 2;
     }
-
-    inputCounter = originalInputCounter;    
+  
     listItemsContents.reverse();
     for (var i = 0; i < listItemsContents.length; i++) {
         console.log(index + " " + listItemsContents[i]);
     }
-    console.log("new number of inputs: " + inputCounter);
+    inputCounter = originalInputCounter;  
+    printInputState("collect");
     return listItemsContents;
 }
 
 function repopulateListItems(contents) {
 
+}
+
+function printInputState(funcName) {
+    if (funcName == "add") {
+        console.log("Added new item")
+        console.log("current index: " + index);
+        console.log("current input counter: " + inputCounter);
+        console.log("current br counter: " + brCounter);
+        console.log("\n");
+    } else if (funcName == "remove") {
+        console.log("Removed all items")
+        console.log("current index: " + index);
+        console.log("current input counter: " + inputCounter);
+        console.log("current br counter: " + brCounter);
+        console.log("\n");
+    } else if (funcName == "collect") {
+        console.log("Removed checked items")
+        console.log("current index: " + index);
+        console.log("current input counter: " + inputCounter);
+        console.log("current br counter: " + brCounter);
+        console.log("\n");
+    } else {
+        console.log("current index: " + index);
+        console.log("current input counter: " + inputCounter);
+        console.log("current br counter: " + brCounter);
+        console.log("\n");
+    }
 }
