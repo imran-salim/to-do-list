@@ -91,29 +91,24 @@ function repopulateListItems(contents) {
 
 }
 
-function printInputState(funcName) {
+function printInputStateByFunction(funcName) {
     if (funcName == "add") {
         console.log("Added new item")
-        console.log("current index: " + index);
-        console.log("current input counter: " + inputCounter);
-        console.log("current br counter: " + brCounter);
-        console.log("\n");
+        printInputState();
     } else if (funcName == "remove") {
         console.log("Removed all items")
-        console.log("current index: " + index);
-        console.log("current input counter: " + inputCounter);
-        console.log("current br counter: " + brCounter);
-        console.log("\n");
+        printInputState();
     } else if (funcName == "collect") {
         console.log("Removed checked items")
-        console.log("current index: " + index);
-        console.log("current input counter: " + inputCounter);
-        console.log("current br counter: " + brCounter);
-        console.log("\n");
+        printInputState();
     } else {
-        console.log("current index: " + index);
-        console.log("current input counter: " + inputCounter);
-        console.log("current br counter: " + brCounter);
-        console.log("\n");
+        printInputState();
     }
+}
+
+function printInputState() {
+    console.log("current index: " + index);
+    console.log("current input counter: " + inputCounter);
+    console.log("current br counter: " + brCounter);
+    console.log("\n");
 }
