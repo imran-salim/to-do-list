@@ -11,7 +11,7 @@ function addListItem() {
     index += 1;
     inputCounter += 2;
     brCounter += 1;
-    printInputState("add");
+    printInputStateByFunction("add");
 }
 
 function removeCheckedListItems() {
@@ -20,7 +20,7 @@ function removeCheckedListItems() {
     for (var i = 0; i  < listContents.length-1; i++) {
         addListItem();
     }
-    // repopulateListItems(listContents);
+    repopulateListItems(listContents);
 }
 
 function removeAllListItems() {
@@ -39,7 +39,7 @@ function removeAllListItems() {
     }
 
     index = 0;
-    printInputState("remove");
+    printInputStateByFunction("remove");
     addListItem();
 }
 
@@ -78,17 +78,26 @@ function collectUncheckedListItemsContents() {
         inputCounter -= 2;
     }
   
-    listItemsContents.reverse();
-    for (var i = 0; i < listItemsContents.length; i++) {
-        console.log(index + " " + listItemsContents[i]);
-    }
-    inputCounter = originalInputCounter;  
-    printInputState("collect");
+    // for (var i = 0; i < listItemsContents.length; i++) {
+    //     console.log(listItemsContents[i]);
+    // }
+    inputCounter = originalInputCounter;
+    printInputStateByFunction("collect");
     return listItemsContents;
 }
 
 function repopulateListItems(contents) {
+    originalInputCounter = inputCounter;
+    contentsIndex = 0;
 
+    while (inputCounter >= 0) {
+        var elmntTxtbx = inputs[inputCounter + 1];
+        elmntTxtbx.value = contents[contentsIndex];
+        contentsIndex += 1;
+        inputCounter -= 2;
+    }
+
+    inputCounter = originalInputCounter;
 }
 
 function printInputStateByFunction(funcName) {
@@ -100,8 +109,6 @@ function printInputStateByFunction(funcName) {
         printInputState();
     } else if (funcName == "collect") {
         console.log("Removed checked items")
-        printInputState();
-    } else {
         printInputState();
     }
 }
