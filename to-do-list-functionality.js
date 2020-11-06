@@ -11,11 +11,11 @@ function addListItem() {
     index += 1;
     inputCounter += 2;
     brCounter += 1;
-    printInputStateByFunction("add");
+    // printInputStateByFunction("add");
 }
 
 function removeCheckedListItems() {
-    var listContents = collectUncheckedListItemsContents();
+    var listContents = collectUncheckedListItemContents();
     removeAllListItems();
     for (var i = 0; i  < listContents.length-1; i++) {
         addListItem();
@@ -39,7 +39,7 @@ function removeAllListItems() {
     }
 
     index = 0;
-    printInputStateByFunction("remove");
+    // printInputStateByFunction("remove");
     addListItem();
 }
 
@@ -64,35 +64,35 @@ function addLineBr() {
     document.body.appendChild(br);
 }
 
-function collectUncheckedListItemsContents() {
-    var listItemsContents = [];
+function collectUncheckedListItemContents() {
+    var listItemContents = [];
     var originalInputCounter = inputCounter;
-    printInputState();
+    // printInputState();
     
     while (inputCounter >= 0) {
         var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
         if (elmntChckbx.checked == false) {
             var elmntTxtbx = inputs[inputCounter + 1];
-            listItemsContents.push(elmntTxtbx.value);
+            listItemContents.push(elmntTxtbx.value);
         }       
         inputCounter -= 2;
     }
   
-    // for (var i = 0; i < listItemsContents.length; i++) {
-    //     console.log(listItemsContents[i]);
+    // for (var i = 0; i < listItemContents.length; i++) {
+    //     console.log(listItemContents[i]);
     // }
     inputCounter = originalInputCounter;
-    printInputStateByFunction("collect");
-    return listItemsContents;
+    // printInputStateByFunction("collect");
+    return listItemContents;
 }
 
-function repopulateListItems(contents) {
+function repopulateListItems(listContents) {
     originalInputCounter = inputCounter;
     contentsIndex = 0;
 
     while (inputCounter >= 0) {
         var elmntTxtbx = inputs[inputCounter + 1];
-        elmntTxtbx.value = contents[contentsIndex];
+        elmntTxtbx.value = listContents[contentsIndex];
         contentsIndex += 1;
         inputCounter -= 2;
     }
