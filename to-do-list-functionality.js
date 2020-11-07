@@ -40,6 +40,7 @@ function removeAllListItems() {
 
     index = 0;
     // printInputStateByFunction("remove");
+    // localStorage.clear();
     addListItem();
 }
 
@@ -138,7 +139,37 @@ function storeList() {
     brCounter = originalBrCounter;
     printInputState();
     printStoredList();
-    localStorage.clear();
+}
+
+function restoreList() {
+    var numOfItems = localStorage.length;
+    console.log(numOfItems);
+
+    if (numOfItems > 0) {
+        for (var i = 0; i < numOfItems-1; i++) {
+            addListItem();
+        }
+
+        var originalBrCounter = brCounter;
+        var originalInputCounter = inputCounter;
+
+        while (brCounter >= 0 && inputCounter >= 0) {
+            storedValue = localStorage.getItem(brCounter);
+            console.log("key/val: " + brCounter + " " + localStorage.getItem(brCounter));
+            var elmntTxtbx = inputs[inputCounter + 1];
+            elmntTxtbx.value = localStorage.getItem(brCounter);
+            brCounter -= 1;
+            inputCounter -= 2;
+        }
+
+        brCounter = originalBrCounter;
+        inputCounter = originalInputCounter;
+        localStorage.clear();
+    }
+
+    // first textbox is filled with a value from local storage upon reopening page
+
+    printInputState();
 }
 
 function printStoredList() {
@@ -146,9 +177,7 @@ function printStoredList() {
 
     while (brCounter >= 0) {
         storedValue = localStorage.getItem(brCounter);
-        if (storedValue != null) {
-            console.log("key/val: " + brCounter + " " + localStorage.getItem(brCounter));
-        }
+        console.log("key/val: " + brCounter + " " + localStorage.getItem(brCounter));
         brCounter -= 1;
     }
 
