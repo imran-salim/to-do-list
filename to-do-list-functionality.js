@@ -117,5 +117,40 @@ function printInputState() {
     console.log("current index: " + index);
     console.log("current input counter: " + inputCounter);
     console.log("current br counter: " + brCounter);
-    console.log("\n");
+    // console.log("\n");
+}
+
+function storeList() {
+    originalInputCounter = inputCounter;
+    originalBrCounter = brCounter;
+
+    while (inputCounter >= 0) {
+        var elmntTxtbx = inputs[inputCounter + 1];
+        if (elmntTxtbx.value != "") {
+            console.log("index/val: " + brCounter + " " + elmntTxtbx.value);
+            localStorage.setItem(brCounter, elmntTxtbx.value);
+        }
+        inputCounter -= 2;
+        brCounter -= 1;
+    }
+
+    inputCounter = originalInputCounter;
+    brCounter = originalBrCounter;
+    printInputState();
+    printStoredList();
+    localStorage.clear();
+}
+
+function printStoredList() {
+    originalBrCounter = brCounter;
+
+    while (brCounter >= 0) {
+        storedValue = localStorage.getItem(brCounter);
+        if (storedValue != null) {
+            console.log("key/val: " + brCounter + " " + localStorage.getItem(brCounter));
+        }
+        brCounter -= 1;
+    }
+
+    brCounter = originalBrCounter;
 }
