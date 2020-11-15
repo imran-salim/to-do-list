@@ -71,7 +71,7 @@ function collectUncheckedListItemContents() {
     // printInputState();
     
     while (inputCounter >= 0) {
-        var elmntChckbx = document.getElementsByTagName("INPUT")[inputCounter];
+        var elmntChckbx = inputs[inputCounter];
         if (elmntChckbx.checked == false) {
             var elmntTxtbx = inputs[inputCounter + 1];
             listItemContents.push(elmntTxtbx.value);
