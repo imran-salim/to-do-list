@@ -142,7 +142,7 @@ function restoreList() {
 
         brCounter = originalBrCounter;
         inputCounter = originalInputCounter;
-        clearStoredList();
+        // clearStoredList();
     }
 
     printInputState();
