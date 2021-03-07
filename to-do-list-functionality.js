@@ -1,6 +1,8 @@
+// indices to keep track of where each list item is in the DOM
 var inputCounter = 0;
 var brCounter = 0;
 var index = 1;
+
 var inputs = document.getElementsByTagName("INPUT");
 var linebreaks = document.getElementsByTagName("BR");
 
@@ -35,6 +37,7 @@ function addLineBr() {
     document.body.appendChild(br);
 }
 
+// revert list to default state
 function removeAllListItems() {
     while (brCounter >= 0) {
         var elmntBr = linebreaks[brCounter];
@@ -65,6 +68,7 @@ function removeCheckedListItems() {
     repopulateListItems(listContents);
 }
 
+// temporalily store data of unchecked list items
 function collectUncheckedListItemContents() {
     var listItemContents = [];
     var originalInputCounter = inputCounter;
@@ -87,6 +91,7 @@ function collectUncheckedListItemContents() {
     return listItemContents;
 }
 
+// fill empty list items with temporarily stored data
 function repopulateListItems(listContents) {
     originalInputCounter = inputCounter;
     contentsIndex = 0;
@@ -101,6 +106,7 @@ function repopulateListItems(listContents) {
     inputCounter = originalInputCounter;
 }
 
+// store list in local storage
 function storeList() {
     originalInputCounter = inputCounter;
     originalBrCounter = brCounter;
@@ -119,6 +125,7 @@ function storeList() {
     printStoredList();
 }
 
+// fetch list state from local storage
 function restoreList() {
     var numOfItems = localStorage.length;
     console.log(numOfItems);
